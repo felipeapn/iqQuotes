@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.felipeapn.model.Candle;
 import com.felipeapn.model.CandleDirectionEnum;
 import com.felipeapn.model.Quote;
-import com.felipeapn.model.QuoteId;
 import com.felipeapn.repository.CandleRepository;
 import com.felipeapn.repository.QuoteRepository;
 import com.felipeapn.service.CandleService;
@@ -44,6 +43,7 @@ public class CandleServiceImpl implements CandleService {
 		Map<Timestamp, Quote> mapQuote = quotes.stream().collect(Collectors.toMap(Quote::getTimeQuote, q -> q));
 		
 		Candle candle = new Candle();
+		
 		while (count.isBefore(to)) {
 
 			Quote quote = mapQuote.get(Timestamp.valueOf(count.withSecond(0)));
