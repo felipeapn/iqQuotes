@@ -40,6 +40,7 @@ public class CandleServiceImpl implements CandleService {
 		
 		List<Quote> quotes = quoteRepository.findAllWithTimeBetweenAndCurrencyId(start, end, 1);
 			
+		//TODO: Move this conversion to QuoteRepository.
 		Map<Timestamp, Quote> mapQuote = quotes.stream().collect(Collectors.toMap(Quote::getTimeQuote, q -> q));
 		
 		Candle candle = new Candle();

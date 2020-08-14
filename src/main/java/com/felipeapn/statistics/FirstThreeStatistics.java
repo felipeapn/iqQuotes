@@ -1,11 +1,22 @@
 package com.felipeapn.statistics;
 
-public class FirstThreeStatistics implements StatisticCalculatorStrategy {
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+
+import com.felipeapn.model.Candle;
+import com.felipeapn.model.StatisticsDto;
+
+public class FirstThreeStatistics implements StatisticsCalculatorStrategy {
 
 	@Override
-	public String getStatistics(String nome) {
+	public List<StatisticsDto> getStatistics(LocalDateTime start, LocalDateTime end, Map<Timestamp, Candle> mapCandle) {
 		
-		return nome + " -> FirstThree Statistic";
+		System.out.println(start);
+		System.out.println(mapCandle);
+		
+		return null;
 	}
 
 }

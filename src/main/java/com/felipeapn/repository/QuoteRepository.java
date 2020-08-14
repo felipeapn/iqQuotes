@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.felipeapn.model.Quote;
 import com.felipeapn.model.QuoteId;
 
+
 public interface QuoteRepository extends JpaRepository<Quote, QuoteId> {
 	
 	@Query("select q from Quote q where q.timeQuote between :start and :end and currencyId = :currencyId")
