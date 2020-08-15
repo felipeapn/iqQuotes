@@ -3,9 +3,7 @@ package com.felipeapn.service.impl;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,11 +35,8 @@ public class CandleServiceImpl implements CandleService {
 		
 		Timestamp start = Timestamp.valueOf(from);
 		Timestamp end = Timestamp.valueOf(to);
-		
-		List<Quote> quotes = quoteRepository.findAllWithTimeBetweenAndCurrencyId(start, end, 1);
 			
-		//TODO: Move this conversion to QuoteRepository.
-		Map<Timestamp, Quote> mapQuote = quotes.stream().collect(Collectors.toMap(Quote::getTimeQuote, q -> q));
+		Map<Timestamp, Quote> mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(start, end, 1);
 		
 		Candle candle = new Candle();
 		

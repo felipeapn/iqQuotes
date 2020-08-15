@@ -13,7 +13,7 @@ public class FirstThreeStatistics implements StatisticsCalculatorStrategy {
 	@Override
 	public List<StatisticsDto> getStatistics(LocalDateTime start, LocalDateTime end, Map<Timestamp, Candle> mapCandle) {
 		
-		System.out.println(start);
+		System.out.println(start + "First");
 		System.out.println(mapCandle);
 		
 		return null;

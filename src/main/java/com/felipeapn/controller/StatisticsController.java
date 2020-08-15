@@ -13,7 +13,6 @@ import com.felipeapn.service.StatisticsService;
 import com.felipeapn.statistics.EndThreeStatistic;
 import com.felipeapn.statistics.FirstThreeStatistics;
 import com.felipeapn.statistics.MidThreeStatistic;
-import com.felipeapn.statistics.StatisticsCalculatorStrategyContext;
 
 @RestController
 @RequestMapping(path = "statistic")
@@ -22,11 +21,9 @@ public class StatisticsController {
 	@Autowired
 	private StatisticsService statisticsService;
 	
-	@GetMapping(path = "fistThree")
+	@GetMapping(path = "firstThree")
 	public List<StatisticsDto> getFistThreeStatistic() {
-
-		return statisticsService.getStatistics(LocalDateTime.parse("2020-08-12T12:00:00"), LocalDateTime.parse("2020-08-12T12:59:59"), 1, new FirstThreeStatistics());
-				
+		return statisticsService.getStatistics(LocalDateTime.parse("2020-08-12T12:00:00"), LocalDateTime.parse("2020-08-12T12:59:59"), 1, new FirstThreeStatistics());		
 	}
 	
 	@GetMapping(path = "endThree")

@@ -12,7 +12,6 @@ import com.felipeapn.model.Candle;
 import com.felipeapn.model.StatisticsDto;
 import com.felipeapn.repository.CandleRepository;
 import com.felipeapn.service.StatisticsService;
-import com.felipeapn.statistics.FirstThreeStatistics;
 import com.felipeapn.statistics.StatisticsCalculatorStrategy;
 import com.felipeapn.statistics.StatisticsCalculatorStrategyContext;
 

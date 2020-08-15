@@ -13,7 +13,7 @@ public class EndThreeStatistic implements StatisticsCalculatorStrategy {
 	@Override
 	public List<StatisticsDto> getStatistics(LocalDateTime start, LocalDateTime end, Map<Timestamp, Candle> mapCandle) {
 
-		System.out.println(start);
+		System.out.println(start + "End");
 		System.out.println(mapCandle);
 		
 		return null;

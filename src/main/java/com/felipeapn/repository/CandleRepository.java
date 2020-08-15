@@ -21,8 +21,9 @@ public interface CandleRepository extends JpaRepository<Candle, CandleId> {
 			@Param("currencyId") int currencyId );
 	
 	//default method
-	default Map<Timestamp, Candle> findWithTimeBetweenAndCurrencyIdToMap(Timestamp start, Timestamp end, int currencyId) {
-		return findWithTimeBetweenAndCurrencyId(start, end, currencyId).stream().collect(Collectors.toMap(Candle::getTimeCandle, c -> c));
-		
+	default Map<Timestamp, Candle> findWithTimeBetweenAndCurrencyIdToMap
+			(Timestamp start, Timestamp end, int currencyId) {
+		return findWithTimeBetweenAndCurrencyId(start, end, currencyId)
+				.stream().collect(Collectors.toMap(Candle::getTimeCandle, c -> c));
 	}
 }
