@@ -12,8 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StatisticsDto implements Serializable {
 	
+	private StatisticsType statisticsType;
 	private Timestamp time;
-	private boolean winner;
+	private ResultEnum result;
 	private int tryToWin;
+	private int pastDirectionCount;
 
 }

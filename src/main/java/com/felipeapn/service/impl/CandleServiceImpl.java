@@ -59,6 +59,8 @@ public class CandleServiceImpl implements CandleService {
 			
 			candleRepository.save(candle);
 			
+			log.info("Candle {} ", candle);
+			
 			count = count.plusMinutes(candleMinuteSize);
 		}
 		 
