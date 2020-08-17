@@ -10,27 +10,30 @@ import org.springframework.stereotype.Service;
 
 import com.felipeapn.model.Candle;
 import com.felipeapn.model.StatisticsDto;
-import com.felipeapn.repository.CandleRepository;
+import com.felipeapn.service.CandleService;
 import com.felipeapn.service.StatisticsService;
 import com.felipeapn.statistics.StatisticsCalculatorStrategy;
 import com.felipeapn.statistics.StatisticsCalculatorStrategyContext;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class StatisticsServiceImpl implements StatisticsService {
-	
+		
 	@Autowired
-	private CandleRepository candleRepository;
+	private CandleService candleService;
 
 	@Override
-	public List<StatisticsDto> getStatistics(LocalDateTime start, LocalDateTime end, int currencyId,
+	public List<StatisticsDto> getStatistics(LocalDateTime from, LocalDateTime to, int currencyId,
 			StatisticsCalculatorStrategy statisticsCalculatorStrategy) {
-		
+		log.info("Call calculator");
 		StatisticsCalculatorStrategyContext calculator = new StatisticsCalculatorStrategyContext(statisticsCalculatorStrategy);
 		
-		Map<Timestamp, Candle> mapCandle = candleRepository.findWithTimeBetweenAndCurrencyIdToMap(
-				Timestamp.valueOf(start), Timestamp.valueOf(end), currencyId);
-		
-		return calculator.getStatistics(start, end, mapCandle);
+		log.info("Ask candles Map to candle service - from {} to {}", from, to);
+		Map<Timestamp, Candle> mapCandle = candleService.getMapCandle(from, to, currencyId);
+				
+		return calculator.getStatistics(from, to, mapCandle);
 	}
 
 }

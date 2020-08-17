@@ -4,11 +4,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -50,41 +48,20 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 	}
 	
 	@Override
-	public QuoteList getQuotes() {
+	public QuoteList getQuotes(LocalDateTime from, LocalDateTime to, int currencyId) {
 			
 		//TODO: Parametros abaixo de dias e hora devem ser adicinado no metodos.
+		//TODO: from max 7 days behind. to till 30 minutes behind.
 		LocalDate today = LocalDate.now();
 		
-		int startHour = 11;
-		int endHour = 12;
-				
-		for (int i = 1; i < 6; i++ ) {
-			
-			LocalDateTime startDay = today.minusDays(i).atTime(startHour - 1, 54, 59);
-			LocalDateTime endDay = today.minusDays(i).atTime(endHour, 59, 59);
-			
-			Timestamp from = Timestamp.valueOf(startDay);
-			Timestamp to = Timestamp.valueOf(endDay);
-			
-			log.info("time to {} from {}", to.getTime(), from.getTime());
-			
-			ResponseEntity<QuoteList> entity = restTemplate.getForEntity(preparedUri(from, to) , QuoteList.class);
-			
-			persisteQuote(entity.getBody().getQuotes());
-			
-		}
+		log.info("time to {} from {}", to, from);
 		
+		ResponseEntity<QuoteList> entity = 
+				restTemplate.getForEntity(preparedUri(from, to, currencyId) , QuoteList.class);
 		
-		
-        //System.out.println(restTemplate.getForEntity(PATH, String.class).getBody());
-				
-		//System.out.println(entity.getBody().getQuotes().size());
-		
-		//Timestamp stamp = new Timestamp(entity.getBody().getQuotes().get(0).getTs());
-
-		// System.out.println(stamp.toString());
+		persisteQuote(entity.getBody().getQuotes());
 	
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
+//		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
 		
 		//LocalDateTime localTime = stamp.toLocalDateTime();
 		
@@ -118,20 +95,36 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 		
 	}
 	
-	private String preparedUri(Timestamp from, Timestamp to) {
+	private String preparedUri(LocalDateTime from, LocalDateTime to, int currencyId) {
 		
 		UriComponents uri = UriComponentsBuilder.newInstance()
 				.scheme(SCHEME)
 				.host(HOST)
 				.path(PATH)
-				.queryParam("to", to.getTime())
-				.queryParam("from", from.getTime())
+				.queryParam("to", Timestamp.valueOf(to).getTime())
+				.queryParam("from", Timestamp.valueOf(from).getTime())
 				.queryParam("active_id", "1")
 				.queryParam("only_round", "true")
 				.queryParam("_key", "1597074900")
 				.build();
 		log.info(uri.toString());
 		return uri.toString();
+	}
+
+	@Override
+	public Map<Timestamp, Quote> getMapQuote(LocalDateTime from, LocalDateTime to, int currencyId) {
+		
+		Map<Timestamp, Quote> mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(
+				Timestamp.valueOf(from), Timestamp.valueOf(to), 1);
+		
+		long minutes = from.until(to, ChronoUnit.MINUTES);
+		
+		if ((minutes * 2) <= mapQuote.size())
+			return mapQuote;
+		
+		this.getQuotes(from, to, currencyId);
+		
+		return quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(Timestamp.valueOf(from), Timestamp.valueOf(to), 1);
 	}
  
 }

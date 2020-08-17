@@ -3,6 +3,7 @@ package com.felipeapn.service.impl;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.felipeapn.model.Quote;
 import com.felipeapn.repository.CandleRepository;
 import com.felipeapn.repository.QuoteRepository;
 import com.felipeapn.service.CandleService;
+import com.felipeapn.service.IqQuotesService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,29 +24,27 @@ import lombok.extern.slf4j.Slf4j;
 public class CandleServiceImpl implements CandleService {
 
 	@Autowired
-	private QuoteRepository quoteRepository;
+	private IqQuotesService quoteService;
+	
 	@Autowired
 	private CandleRepository candleRepository;
 	
 	@Override
-	public void getCandle(LocalDateTime from, LocalDateTime to, int candleMinuteSize) {
+	public void getCandle(LocalDateTime from, LocalDateTime to, int candleMinuteSize, int currencyId) {
 	
 		//TODO: Make a test to check if the quotes needed to that time range are on database, otherwise get it from web site.
 		
+		log.info("Date and time from {}", from);
+		
 		LocalDateTime count = from;
 		
-		Timestamp start = Timestamp.valueOf(from);
-		Timestamp end = Timestamp.valueOf(to);
-			
-		Map<Timestamp, Quote> mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(start, end, 1);
+		Map<Timestamp, Quote> mapQuote = quoteService.getMapQuote(from, to, 1);
 		
 		Candle candle = new Candle();
 		
 		while (count.isBefore(to)) {
 
 			Quote quote = mapQuote.get(Timestamp.valueOf(count.withSecond(0)));
-			
-			log.info("Quote seconde 00 {}", quote);
 			
 			candle.setTimeCandle(quote.getTimeQuote());
 			candle.setCurrencyId(1); //TODO: put it on parameters
@@ -59,13 +59,31 @@ public class CandleServiceImpl implements CandleService {
 			
 			candleRepository.save(candle);
 			
-			log.info("Candle {} ", candle);
-			
 			count = count.plusMinutes(candleMinuteSize);
 		}
 		 
 	}
 
+	@Override
+	public Map<Timestamp, Candle> getMapCandle(LocalDateTime from, LocalDateTime to, int currencyId) {
+		
+		Map<Timestamp, Candle> mapCandle = candleRepository.findWithTimeBetweenAndCurrencyIdToMap(
+				Timestamp.valueOf(from), Timestamp.valueOf(to), currencyId);
+		
+		long minutes = from.until(to, ChronoUnit.MINUTES);
+		
+		if (minutes == mapCandle.size())
+			return mapCandle;
+		
+		this.getCandle(from, to, 1, currencyId);
+		
+		mapCandle = candleRepository.findWithTimeBetweenAndCurrencyIdToMap(
+				Timestamp.valueOf(from), Timestamp.valueOf(to), currencyId);
+		
+		return mapCandle;
+	}
+	
+	
 //	TODO: CHECK WITH MY BOSS LUCAS THE BEST PLACE TO PUT THIS RULE.
 	private CandleDirectionEnum calculateDiretcion(BigDecimal valueA, BigDecimal valueB) {
 		

@@ -19,7 +19,7 @@ public class CandleController {
 	@GetMapping
 	public void getCandle() {
 		
-		candleService.getCandle(LocalDateTime.parse("2020-08-12T12:00:00"), LocalDateTime.parse("2020-08-12T12:59:59"), 1);
+		candleService.getCandle(LocalDateTime.parse("2020-08-17T12:00:00"), LocalDateTime.parse("2020-08-17T12:59:59"), 1, 1);
 		
 	}
 	

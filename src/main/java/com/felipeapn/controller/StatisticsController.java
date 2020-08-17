@@ -23,7 +23,7 @@ public class StatisticsController {
 	
 	@GetMapping(path = "firstThree")
 	public List<StatisticsDto> getFistThreeStatistic() {
-		return statisticsService.getStatistics(LocalDateTime.parse("2020-08-12T12:00:00"), LocalDateTime.parse("2020-08-12T12:59:59"), 1, new FirstThreeStatistics());		
+		return statisticsService.getStatistics(LocalDateTime.parse("2020-08-17T12:00:00"), LocalDateTime.parse("2020-08-17T13:59:59"), 1, new FirstThreeStatistics());		
 	}
 	
 	@GetMapping(path = "endThree")

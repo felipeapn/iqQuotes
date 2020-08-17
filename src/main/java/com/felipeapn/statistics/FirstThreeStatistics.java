@@ -38,11 +38,6 @@ public class FirstThreeStatistics implements StatisticsCalculatorStrategy {
 			statisticsDto.setStatisticsType(StatisticsType.FIRST_THREE);
 			statisticsDto.setTime(Timestamp.valueOf(iteratorDate));
 			
-			
-			log.info("Start Calculating quadrant {} ", iteratorDate);
-			
-			log.info("Check direction on previews quadrant");
-			
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(4))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(3))));
