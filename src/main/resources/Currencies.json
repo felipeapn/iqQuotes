@@ -1,0 +1,332 @@
+[
+            {
+                "__typename": "Active",
+                "id": 1,
+                "name": "EUR/USD",
+                "ticker": "EURUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 2,
+                "name": "EUR/GBP",
+                "ticker": "EURGBP"
+            },
+            {
+                "__typename": "Active",
+                "id": 3,
+                "name": "GBP/JPY",
+                "ticker": "GBPJPY"
+            },
+            {
+                "__typename": "Active",
+                "id": 4,
+                "name": "EUR/JPY",
+                "ticker": "EURJPY"
+            },
+            {
+                "__typename": "Active",
+                "id": 5,
+                "name": "GBP/USD",
+                "ticker": "GBPUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 6,
+                "name": "USD/JPY",
+                "ticker": "USDJPY"
+            },
+            {
+                "__typename": "Active",
+                "id": 7,
+                "name": "AUD/CAD",
+                "ticker": "AUDCAD"
+            },
+            {
+                "__typename": "Active",
+                "id": 8,
+                "name": "NZD/USD",
+                "ticker": "NZDUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 10,
+                "name": "USD/RUB",
+                "ticker": "USDRUB"
+            },
+            {
+                "__typename": "Active",
+                "id": 31,
+                "name": "Amazon",
+                "ticker": "AMZN"
+            },
+            {
+                "__typename": "Active",
+                "id": 32,
+                "name": "Apple",
+                "ticker": "AAPL"
+            },
+            {
+                "__typename": "Active",
+                "id": 33,
+                "name": "Baidu",
+                "ticker": "BIDU"
+            },
+            {
+                "__typename": "Active",
+                "id": 35,
+                "name": "Facebook",
+                "ticker": "FB"
+            },
+            {
+                "__typename": "Active",
+                "id": 36,
+                "name": "Google",
+                "ticker": "GOOGL"
+            },
+            {
+                "__typename": "Active",
+                "id": 37,
+                "name": "Intel",
+                "ticker": "INTC"
+            },
+            {
+                "__typename": "Active",
+                "id": 38,
+                "name": "Microsoft",
+                "ticker": "MSFT"
+            },
+            {
+                "__typename": "Active",
+                "id": 45,
+                "name": "CitiGroup",
+                "ticker": "C"
+            },
+            {
+                "__typename": "Active",
+                "id": 46,
+                "name": "Coca Cola",
+                "ticker": "KO"
+            },
+            {
+                "__typename": "Active",
+                "id": 50,
+                "name": "Goldman Sachs",
+                "ticker": "GS"
+            },
+            {
+                "__typename": "Active",
+                "id": 51,
+                "name": "JP Morgan Chase",
+                "ticker": "JPM"
+            },
+            {
+                "__typename": "Active",
+                "id": 52,
+                "name": "McDonald's",
+                "ticker": "MCD"
+            },
+            {
+                "__typename": "Active",
+                "id": 53,
+                "name": "Morgan Stanley",
+                "ticker": "MS"
+            },
+            {
+                "__typename": "Active",
+                "id": 54,
+                "name": "Nike",
+                "ticker": "NKE"
+            },
+            {
+                "__typename": "Active",
+                "id": 72,
+                "name": "USD/CHF",
+                "ticker": "USDCHF"
+            },
+            {
+                "__typename": "Active",
+                "id": 76,
+                "name": "EUR/USD (OTC)",
+                "ticker": "EURUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 77,
+                "name": "EUR/GBP (OTC)",
+                "ticker": "EURGBP"
+            },
+            {
+                "__typename": "Active",
+                "id": 78,
+                "name": "USD/CHF (OTC)",
+                "ticker": "USDCHF"
+            },
+            {
+                "__typename": "Active",
+                "id": 80,
+                "name": "NZD/USD (OTC)",
+                "ticker": "NZDUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 81,
+                "name": "GBP/USD (OTC)",
+                "ticker": "GBPUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 86,
+                "name": "AUD/CAD (OTC)",
+                "ticker": "AUDCAD"
+            },
+            {
+                "__typename": "Active",
+                "id": 87,
+                "name": "Alibaba",
+                "ticker": "BABA"
+            },
+            {
+                "__typename": "Active",
+                "id": 95,
+                "name": "Yandex",
+                "ticker": "YNDX"
+            },
+            {
+                "__typename": "Active",
+                "id": 99,
+                "name": "AUD/USD",
+                "ticker": "AUDUSD"
+            },
+            {
+                "__typename": "Active",
+                "id": 100,
+                "name": "USD/CAD",
+                "ticker": "USDCAD"
+            },
+            {
+                "__typename": "Active",
+                "id": 101,
+                "name": "AUD/JPY",
+                "ticker": "AUDJPY"
+            },
+            {
+                "__typename": "Active",
+                "id": 102,
+                "name": "GBP/CAD",
+                "ticker": "GBPCAD"
+            },
+            {
+                "__typename": "Active",
+                "id": 103,
+                "name": "GBP/CHF",
+                "ticker": "GBPCHF"
+            },
+            {
+                "__typename": "Active",
+                "id": 104,
+                "name": "GBP/AUD",
+                "ticker": "GBPAUD"
+            },
+            {
+                "__typename": "Active",
+                "id": 105,
+                "name": "EUR/CAD",
+                "ticker": "EURCAD"
+            },
+            {
+                "__typename": "Active",
+                "id": 107,
+                "name": "CAD/CHF",
+                "ticker": "CADCHF"
+            },
+            {
+                "__typename": "Active",
+                "id": 108,
+                "name": "EUR/AUD",
+                "ticker": "EURAUD"
+            },
+            {
+                "__typename": "Active",
+                "id": 113,
+                "name": "Twitter Inc",
+                "ticker": "TWTR"
+            },
+            {
+                "__typename": "Active",
+                "id": 167,
+                "name": "Tesla",
+                "ticker": "TSLA"
+            },
+            {
+                "__typename": "Active",
+                "id": 168,
+                "name": "USD/NOK",
+                "ticker": "USDNOK"
+            },
+            {
+                "__typename": "Active",
+                "id": 212,
+                "name": "EUR/NZD",
+                "ticker": "EURNZD"
+            },
+            {
+                "__typename": "Active",
+                "id": 220,
+                "name": "USD/TRY",
+                "ticker": "USDTRY"
+            },
+            {
+                "__typename": "Active",
+                "id": 865,
+                "name": "USD/INR",
+                "ticker": "USDINR"
+            },
+            {
+                "__typename": "Active",
+                "id": 866,
+                "name": "USD/PLN",
+                "ticker": "USDPLN"
+            },
+            {
+                "__typename": "Active",
+                "id": 867,
+                "name": "USD/BRL",
+                "ticker": "USDBRL"
+            },
+            {
+                "__typename": "Active",
+                "id": 868,
+                "name": "USD/ZAR",
+                "ticker": "USDZAR"
+            },
+            {
+                "__typename": "Active",
+                "id": 892,
+                "name": "USD/SGD",
+                "ticker": "USDSGD"
+            },
+            {
+                "__typename": "Active",
+                "id": 893,
+                "name": "USD/HKD",
+                "ticker": "USDHKD"
+            },
+            {
+                "__typename": "Active",
+                "id": 943,
+                "name": "AUD/CHF",
+                "ticker": "AUDCHF"
+            },
+            {
+                "__typename": "Active",
+                "id": 944,
+                "name": "AUD/NZD",
+                "ticker": "AUDNZD"
+            },
+            {
+                "__typename": "Active",
+                "id": 947,
+                "name": "GBP/NZD",
+                "ticker": "GBPNZD"
+            }
+        ]

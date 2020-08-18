@@ -59,7 +59,7 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 		ResponseEntity<QuoteList> entity = 
 				restTemplate.getForEntity(preparedUri(from, to, currencyId) , QuoteList.class);
 		
-		persisteQuote(entity.getBody().getQuotes());
+		persisteQuote(entity.getBody().getQuotes(), currencyId);
 	
 //		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
 		
@@ -72,7 +72,7 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 		return null;
 	}
 
-	private void persisteQuote(List<QuoteInputDto> quotes) {
+	private void persisteQuote(List<QuoteInputDto> quotes, int currencyId) {
 
 		quotes.stream()
 			.filter(quote -> (new Timestamp(quote.getTs())).getSeconds() == 0 || new Timestamp(quote.getTs()).getSeconds() == 59)
@@ -83,7 +83,7 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 							.timeQuote(t)
 							.value(q.getValue())
 							.volume(q.getVolume())
-							.currencyId(1) // recuperar da  uri param activeId
+							.currencyId(currencyId)
 							.build();
 
 					quoteRepository.save(quote);
@@ -103,7 +103,7 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 				.path(PATH)
 				.queryParam("to", Timestamp.valueOf(to).getTime())
 				.queryParam("from", Timestamp.valueOf(from).getTime())
-				.queryParam("active_id", "1")
+				.queryParam("active_id", currencyId)
 				.queryParam("only_round", "true")
 				.queryParam("_key", "1597074900")
 				.build();
@@ -122,9 +122,16 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 		if ((minutes * 2) <= mapQuote.size())
 			return mapQuote;
 		
-		this.getQuotes(from, to, currencyId);
+		//split by hour
+		long countHour = from.until(to, ChronoUnit.HOURS);
+		while (countHour >= 0) {
+			this.getQuotes(to.minusHours(countHour + 1), to.minusHours(countHour), currencyId);
+			countHour--;
+		}
 		
-		return quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(Timestamp.valueOf(from), Timestamp.valueOf(to), 1);
+		mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(Timestamp.valueOf(from), Timestamp.valueOf(to), 1);
+		
+		return mapQuote;
 	}
  
 }

@@ -27,7 +27,7 @@ public class IqQuotesController {
 	@GetMapping(path = "quotes")
 	public ResponseEntity<String> getQuotes () {
 		
-		iqQuotesService.getQuotes();
+		iqQuotesService.getQuotes(null, null, 0);
 		
 		return null;
 	}

@@ -32,9 +32,7 @@ public class CandleServiceImpl implements CandleService {
 	@Override
 	public void getCandle(LocalDateTime from, LocalDateTime to, int candleMinuteSize, int currencyId) {
 	
-		//TODO: Make a test to check if the quotes needed to that time range are on database, otherwise get it from web site.
-		
-		log.info("Date and time from {}", from);
+		log.info("getCandle - Date and time from {} to {}", from, to);
 		
 		LocalDateTime count = from;
 		
@@ -46,8 +44,11 @@ public class CandleServiceImpl implements CandleService {
 
 			Quote quote = mapQuote.get(Timestamp.valueOf(count.withSecond(0)));
 			
+			if (quote == null)
+				break;
+			
 			candle.setTimeCandle(quote.getTimeQuote());
-			candle.setCurrencyId(1); //TODO: put it on parameters
+			candle.setCurrencyId(currencyId);
 			candle.setCandleMinuteSize(candleMinuteSize);
 			candle.setOpenedValue(quote.getValue());
 			
