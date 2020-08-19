@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,11 +23,15 @@ public class CandleController {
 	private CandleService candleService;
 
 	@GetMapping
-	public Map<Timestamp, Candle> getCandle(
+	public ResponseEntity<Map<Timestamp, Candle>> getCandle(
 			@RequestParam String from, @RequestParam String to, @RequestParam String currencyId) {
 		
-		return candleService.getMapCandle(
-				LocalDateTime.parse(from), LocalDateTime.parse(to), Integer.parseInt(currencyId));
+		return new ResponseEntity<>(
+				candleService.getMapCandle(
+						LocalDateTime.parse(from), 
+						LocalDateTime.parse(to), 
+						Integer.parseInt(currencyId))
+				, HttpStatus.OK);
 		
 	}
 	

@@ -1,0 +1,90 @@
+[
+    {
+        "timeCandle": "2020-08-17T09:02:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184170,
+        "closedValue": 1.184330,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:01:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.183875,
+        "closedValue": 1.184170,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:00:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.183825,
+        "closedValue": 1.183870,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:06:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184535,
+        "closedValue": 1.184530,
+        "candleMinuteSize": 1,
+        "direction": "DOWN"
+    },
+    {
+        "timeCandle": "2020-08-17T09:07:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184540,
+        "closedValue": 1.184645,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:05:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184280,
+        "closedValue": 1.184530,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:04:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184225,
+        "closedValue": 1.184280,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:03:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184325,
+        "closedValue": 1.184225,
+        "candleMinuteSize": 1,
+        "direction": "DOWN"
+    },
+    {
+        "timeCandle": "2020-08-17T09:10:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184475,
+        "closedValue": 1.184540,
+        "candleMinuteSize": 1,
+        "direction": "UP"
+    },
+    {
+        "timeCandle": "2020-08-17T09:09:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184590,
+        "closedValue": 1.184425,
+        "candleMinuteSize": 1,
+        "direction": "DOWN"
+    },
+ 	{
+        "timeCandle": "2020-08-17T09:08:00.000+00:00",
+        "currencyId": 1,
+        "openedValue": 1.184640,
+        "closedValue": 1.184585,
+        "candleMinuteSize": 1,
+        "direction": "DOWN"
+    }
+]
