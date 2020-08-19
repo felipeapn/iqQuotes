@@ -2,7 +2,9 @@ package com.felipeapn.controller;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,15 +25,13 @@ public class CandleController {
 	private CandleService candleService;
 
 	@GetMapping
-	public ResponseEntity<Map<Timestamp, Candle>> getCandle(
+	public ResponseEntity<List<Candle>> getCandle(
 			@RequestParam String from, @RequestParam String to, @RequestParam String currencyId) {
 		
-		return new ResponseEntity<>(
-				candleService.getMapCandle(
-						LocalDateTime.parse(from), 
-						LocalDateTime.parse(to), 
-						Integer.parseInt(currencyId))
-				, HttpStatus.OK);
+		List<Candle> candles = candleService.getMapCandle( LocalDateTime.parse(from), LocalDateTime.parse(to), Integer.parseInt(currencyId))
+					.values().stream().collect(Collectors.toList());
+		
+		return new ResponseEntity<>(candles, HttpStatus.OK);
 		
 	}
 	

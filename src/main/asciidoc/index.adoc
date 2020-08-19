@@ -1,0 +1,33 @@
+= Binary Option Statistics Strategies
+Felipe Nunes;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+Sample application demonstrating how to use Spring REST Docs with JUnit 5.
+
+`CandleControllerTest` makes a call to a very simple service and produces three
+documentation snippets.
+
+How to make a request using cURL:
+
+include::{snippets}/candle/curl-request.adoc[]
+
+Request example:
+
+include::{snippets}/candle/http-request.adoc[]
+
+Request parameters:
+
+include::{snippets}/candle/request-parameters.adoc[]
+
+Response example:
+
+include::{snippets}/candle/http-response.adoc[]
+
+Response Body:
+include::{snippets}/candle/response-body.adoc[]
+
+
+Response Body Fields:
+include::{snippets}/candle/response-fields.adoc[]

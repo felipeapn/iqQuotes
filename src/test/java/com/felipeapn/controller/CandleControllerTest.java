@@ -7,6 +7,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.File;
@@ -63,6 +64,15 @@ class CandleControllerTest {
 								parameterWithName("from").description("Date from to query candle. Format 2020-08-17T09:08:00"),
 								parameterWithName("to").description("Date to to query candle. Format 2020-08-17T09:08:00"),
 								parameterWithName("currencyId").description("Id of the pair wants to get. All pair on /currency/currencies")
+								),
+						responseFields(
+								fieldWithPath("[]").description("List of candles"),
+								fieldWithPath("[].timeCandle").description("Exact minute of the candle"),
+								fieldWithPath("[].currencyId").description("Currency ID"),
+								fieldWithPath("[].openedValue").description("Opend value at second 00"),
+								fieldWithPath("[].closedValue").description("Closed value at second 59"),
+								fieldWithPath("[].candleMinuteSize").description("Time of the candle"),
+								fieldWithPath("[].direction").description("If the candle is get up of get down")
 								)));	
 	}
 	
