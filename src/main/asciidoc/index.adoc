@@ -6,8 +6,8 @@ Felipe Nunes;
 
 Sample application demonstrating how to use Spring REST Docs with JUnit 5.
 
-`CandleControllerTest` makes a call to a very simple service and produces three
-documentation snippets.
+== Candles
+How retrieve a list of candle in a period of time and currency.
 
 How to make a request using cURL:
 
@@ -28,6 +28,52 @@ include::{snippets}/candle/http-response.adoc[]
 Response Body:
 include::{snippets}/candle/response-body.adoc[]
 
-
 Response Body Fields:
 include::{snippets}/candle/response-fields.adoc[]
+
+== Statistics
+How retrieve a First Three Statistics in a period of time and currency.
+Explain how the algorithm makes this calculation.
+
+How to make a request using cURL:
+
+include::{snippets}/statistic/firstThree/curl-request.adoc[]
+
+Request example:
+
+include::{snippets}/statistic/firstThree/http-request.adoc[]
+
+Request parameters:
+
+include::{snippets}/statistic/firstThree/request-parameters.adoc[]
+
+Response example:
+
+include::{snippets}/statistic/firstThree/http-response.adoc[]
+
+Response Body:
+include::{snippets}/statistic/firstThree/response-body.adoc[]
+
+Response Body Fields:
+include::{snippets}/statistic/firstThree/response-fields.adoc[]
+
+== Currency
+How retrieve all type of currencies.
+
+How to make a request using cURL:
+
+include::{snippets}/currency/currencies/curl-request.adoc[]
+
+Request example:
+
+include::{snippets}/currency/currencies/http-request.adoc[]
+
+Response example:
+
+include::{snippets}/currency/currencies/http-response.adoc[]
+
+Response Body:
+include::{snippets}/currency/currencies/response-body.adoc[]
+
+Response Body Fields:
+include::{snippets}/currency/currencies/response-fields.adoc[]

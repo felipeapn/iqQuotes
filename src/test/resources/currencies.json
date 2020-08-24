@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "EUR/USD",
+        "ticker": "EURUSD"
+    },
+    {
+        "id": 2,
+        "name": "EUR/GBP",
+        "ticker": "EURGBP"
+    },
+    {
+        "id": 3,
+        "name": "GBP/JPY",
+        "ticker": "GBPJPY"
+    },
+    {
+        "id": 4,
+        "name": "EUR/JPY",
+        "ticker": "EURJPY"
+    },
+    {
+        "id": 5,
+        "name": "GBP/USD",
+        "ticker": "GBPUSD"
+    }
+]

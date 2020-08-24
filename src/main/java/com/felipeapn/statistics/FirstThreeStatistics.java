@@ -10,7 +10,7 @@ import com.felipeapn.model.Candle;
 import com.felipeapn.model.CandleDirectionEnum;
 import com.felipeapn.model.ResultEnum;
 import com.felipeapn.model.StatisticsDto;
-import com.felipeapn.model.StatisticsType;
+import com.felipeapn.model.StatisticsTypeEnum;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,22 +21,23 @@ public class FirstThreeStatistics implements StatisticsCalculatorStrategy {
 	public List<StatisticsDto> getStatistics(LocalDateTime start, LocalDateTime end, Map<Timestamp, Candle> mapCandle) {
 		
 		log.info("Starting calculate First Three Algorithim from {} to {}", start, end);
+		log.info("Map candle -> {}", mapCandle);
 		
-		LocalDateTime iteratorDate = start;
-		//TODO: Refact for a default method on interface
-		while (iteratorDate.getMinute() % 5 != 0) {
-			log.info("Starting calculate First Three Algorithim from {} to {}", iteratorDate, end);
-			iteratorDate = iteratorDate.plusMinutes(1);
-		}
+		LocalDateTime iteratorDate= getIteratorDate(start);
+		log.info("Adjust time from {} to {}", iteratorDate, end);
 		
+		log.info("Map of candles {}", mapCandle);
 		StatisticsDto statisticsDto = new StatisticsDto();
 		List<StatisticsDto> statisticsDtos = new ArrayList<>();
 		int pastDirectionCount = 0;		
 		while (iteratorDate.isBefore(end)) {
 			
 			statisticsDto = new StatisticsDto();
-			statisticsDto.setStatisticsType(StatisticsType.FIRST_THREE);
+			statisticsDto.setStatisticsType(StatisticsTypeEnum.FIRST_THREE);
 			statisticsDto.setTime(Timestamp.valueOf(iteratorDate));
+			
+			log.info("Iterator minute {}", Timestamp.valueOf(iteratorDate));
+			log.info("values of first candle {}", mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
 			
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(4))));
@@ -74,19 +75,5 @@ public class FirstThreeStatistics implements StatisticsCalculatorStrategy {
 		
 		return statisticsDtos;
 	}
-	
-	private int directionToSum(Candle candle) {
-		
-		if (candle == null)
-			return 0;
-		
-		if (candle.getDirection() == CandleDirectionEnum.UP)
-			return 1;
-		
-		if (candle.getDirection() == CandleDirectionEnum.DOWN)
-			return -1;
-			
-		return 0;
-	}
-		
+
 }

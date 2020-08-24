@@ -1,0 +1,16 @@
+[
+    {
+        "statisticsType": "FIRST_THREE",
+        "time": "2020-08-17T09:00:00.000+00:00",
+        "result": "NOT_EVALUATED",
+        "tryToWin": 0,
+        "pastDirectionCount": 0
+    },
+    {
+        "statisticsType": "FIRST_THREE",
+        "time": "2020-08-17T09:05:00.000+00:00",
+        "result": "WIN",
+        "tryToWin": 1,
+        "pastDirectionCount": 3
+    }
+]
