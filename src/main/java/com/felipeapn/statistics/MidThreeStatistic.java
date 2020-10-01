@@ -36,16 +36,11 @@ public class MidThreeStatistic implements StatisticsCalculatorStrategy {
 			statisticsDto.setStatisticsType(StatisticsTypeEnum.MID_THREE);
 			statisticsDto.setTime(Timestamp.valueOf(iteratorDate));
 			
-			log.info("Iterator minute {}", Timestamp.valueOf(iteratorDate));
-			log.info("values of first candle {}", mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
 			int tryToWin = 1;
 			for(int i = 0; i <= 5; i = i + 2) {
 				
-				Candle pastCandle = mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(i)));
+				Candle pastCandle = mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5 - i)));
 				Candle currentCandle = mapCandle.get(Timestamp.valueOf(iteratorDate.plusMinutes(i)));
-				
-				log.info("Past Candle -> {} ", pastCandle);
-				log.info("Current Candle -> {} ", currentCandle);
 				
 				if (pastCandle != null) {
 					

@@ -55,90 +55,6 @@
             },
             {
                 "__typename": "Active",
-                "id": 31,
-                "name": "Amazon",
-                "ticker": "AMZN"
-            },
-            {
-                "__typename": "Active",
-                "id": 32,
-                "name": "Apple",
-                "ticker": "AAPL"
-            },
-            {
-                "__typename": "Active",
-                "id": 33,
-                "name": "Baidu",
-                "ticker": "BIDU"
-            },
-            {
-                "__typename": "Active",
-                "id": 35,
-                "name": "Facebook",
-                "ticker": "FB"
-            },
-            {
-                "__typename": "Active",
-                "id": 36,
-                "name": "Google",
-                "ticker": "GOOGL"
-            },
-            {
-                "__typename": "Active",
-                "id": 37,
-                "name": "Intel",
-                "ticker": "INTC"
-            },
-            {
-                "__typename": "Active",
-                "id": 38,
-                "name": "Microsoft",
-                "ticker": "MSFT"
-            },
-            {
-                "__typename": "Active",
-                "id": 45,
-                "name": "CitiGroup",
-                "ticker": "C"
-            },
-            {
-                "__typename": "Active",
-                "id": 46,
-                "name": "Coca Cola",
-                "ticker": "KO"
-            },
-            {
-                "__typename": "Active",
-                "id": 50,
-                "name": "Goldman Sachs",
-                "ticker": "GS"
-            },
-            {
-                "__typename": "Active",
-                "id": 51,
-                "name": "JP Morgan Chase",
-                "ticker": "JPM"
-            },
-            {
-                "__typename": "Active",
-                "id": 52,
-                "name": "McDonald's",
-                "ticker": "MCD"
-            },
-            {
-                "__typename": "Active",
-                "id": 53,
-                "name": "Morgan Stanley",
-                "ticker": "MS"
-            },
-            {
-                "__typename": "Active",
-                "id": 54,
-                "name": "Nike",
-                "ticker": "NKE"
-            },
-            {
-                "__typename": "Active",
                 "id": 72,
                 "name": "USD/CHF",
                 "ticker": "USDCHF"
@@ -178,18 +94,6 @@
                 "id": 86,
                 "name": "AUD/CAD (OTC)",
                 "ticker": "AUDCAD"
-            },
-            {
-                "__typename": "Active",
-                "id": 87,
-                "name": "Alibaba",
-                "ticker": "BABA"
-            },
-            {
-                "__typename": "Active",
-                "id": 95,
-                "name": "Yandex",
-                "ticker": "YNDX"
             },
             {
                 "__typename": "Active",
@@ -244,18 +148,6 @@
                 "id": 108,
                 "name": "EUR/AUD",
                 "ticker": "EURAUD"
-            },
-            {
-                "__typename": "Active",
-                "id": 113,
-                "name": "Twitter Inc",
-                "ticker": "TWTR"
-            },
-            {
-                "__typename": "Active",
-                "id": 167,
-                "name": "Tesla",
-                "ticker": "TSLA"
             },
             {
                 "__typename": "Active",

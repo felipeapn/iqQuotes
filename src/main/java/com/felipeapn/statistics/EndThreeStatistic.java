@@ -35,10 +35,8 @@ public class EndThreeStatistic implements StatisticsCalculatorStrategy {
 			statisticsDto = new StatisticsDto();
 			statisticsDto.setStatisticsType(StatisticsTypeEnum.END_THREE);
 			statisticsDto.setTime(Timestamp.valueOf(iteratorDate));
-			
-			log.info("Iterator minute {}", Timestamp.valueOf(iteratorDate));
-			log.info("values of first candle {}", mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
-			
+			statisticsDto.setCurrencyID(mapCandle.get(Timestamp.valueOf(start)).getCurrencyId());
+					
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(1))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(2))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(3))));
@@ -48,19 +46,25 @@ public class EndThreeStatistic implements StatisticsCalculatorStrategy {
 			} else {
 				statisticsDto.setResult(ResultEnum.LOST);
 				if (pastDirectionCount > 0) {
-					for (int i=0; i <= 2; i++)
-						if (mapCandle.get(Timestamp.valueOf(iteratorDate.plusMinutes(i))).getDirection() == CandleDirectionEnum.UP) {
-							statisticsDto.setResult(ResultEnum.WIN);
-							statisticsDto.setTryToWin(i + 1);
-							break;
-						}
-				} else {
-					for (int i=0; i <= 2; i++)
+					for (int i=0; i <= 2; i++) {
 						if (mapCandle.get(Timestamp.valueOf(iteratorDate.plusMinutes(i))).getDirection() == CandleDirectionEnum.DOWN) {
+							//log.info("values of evaluating UP candle {}", mapCandle.get(Timestamp.valueOf(iteratorDate.plusMinutes(i))));
 							statisticsDto.setResult(ResultEnum.WIN);
 							statisticsDto.setTryToWin(i + 1);
 							break;
 						}
+					}
+						
+				} else {
+					for (int i=0; i <= 2; i++) {
+						if (mapCandle.get(Timestamp.valueOf(iteratorDate.plusMinutes(i))).getDirection() == CandleDirectionEnum.UP) {
+							//log.info("values of evaluating DOWN candle {}", mapCandle.get(Timestamp.valueOf(iteratorDate.plusMinutes(i))));
+							statisticsDto.setResult(ResultEnum.WIN);
+							statisticsDto.setTryToWin(i + 1);
+							break;
+						}
+						
+					}
 				}
 			}
 			

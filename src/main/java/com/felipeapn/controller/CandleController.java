@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.felipeapn.model.Candle;
 import com.felipeapn.service.CandleService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping(path = "candle")
+@Slf4j
 public class CandleController {
 
 	@Autowired
@@ -26,6 +29,7 @@ public class CandleController {
 	public ResponseEntity<List<Candle>> getCandle(
 			@RequestParam String from, @RequestParam String to, @RequestParam String currencyId) {
 		
+		log.info("parse do currencyId -> {}", Integer.parseInt(currencyId));
 		List<Candle> candles = candleService.getMapCandle( LocalDateTime.parse(from), LocalDateTime.parse(to), Integer.parseInt(currencyId))
 					.values().stream().collect(Collectors.toList());
 		

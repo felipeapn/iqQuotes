@@ -52,7 +52,7 @@ class MidThreeStatisticTest {
 		assertTrue(timeExpected.isEqual(timeActual), "Data compareing");
 		assertEquals(statisticsDtoReturned.getResult(), ResultEnum.WIN);
 		assertEquals(statisticsDtoReturned.getStatisticsType(), StatisticsTypeEnum.MID_THREE);
-		assertEquals(statisticsDtoReturned.getTryToWin(), 2);
+		assertEquals(statisticsDtoReturned.getTryToWin(), 3);
 		assertEquals(statisticsDtoReturned.getPastDirectionCount(), 0);
 
 	}

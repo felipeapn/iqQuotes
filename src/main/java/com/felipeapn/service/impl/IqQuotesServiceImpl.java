@@ -51,8 +51,15 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 	public QuoteList getQuotes(LocalDateTime from, LocalDateTime to, int currencyId) {
 			
 		//TODO: Parametros abaixo de dias e hora devem ser adicinado no metodos.
-		//TODO: from max 7 days behind. to till 30 minutes behind.
-		LocalDate today = LocalDate.now();
+		LocalDateTime today = LocalDateTime.now();
+		
+		//TODO: Throw exption is betten then just adjust? max days behind is 7 to get data from iq
+		if (from.isBefore(today.minusDays(7)))
+			from = today.minusDays(7);
+		
+		//TODO: Throw exption is betten then just adjust? min minutes behind is 30 to get data from iq.
+		if(to.isAfter(today.minusMinutes(30)))
+			to = today.minusMinutes(30);
 		
 		log.info("time to {} from {}", to, from);
 		
@@ -61,13 +68,9 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 		
 		persisteQuote(entity.getBody().getQuotes(), currencyId);
 	
-//		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
-		
+		//DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
 		//LocalDateTime localTime = stamp.toLocalDateTime();
-		
 		//ZonedDateTime zonedDateTime = localTime.atZone(ZoneId.of("Europe/Madrid"));
-		
-		//System.out.println(format.format(zonedDateTime));
 		
 		return null;
 	}
@@ -115,7 +118,7 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 	public Map<Timestamp, Quote> getMapQuote(LocalDateTime from, LocalDateTime to, int currencyId) {
 		
 		Map<Timestamp, Quote> mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(
-				Timestamp.valueOf(from), Timestamp.valueOf(to), 1);
+				Timestamp.valueOf(from), Timestamp.valueOf(to), currencyId);
 		
 		long minutes = from.until(to, ChronoUnit.MINUTES);
 		
@@ -129,7 +132,8 @@ public class IqQuotesServiceImpl implements IqQuotesService {
 			countHour--;
 		}
 		
-		mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(Timestamp.valueOf(from), Timestamp.valueOf(to), 1);
+		mapQuote = quoteRepository.findAllWithTimeBetweenAndCurrencyIdToMap(
+				Timestamp.valueOf(from), Timestamp.valueOf(to), currencyId);
 		
 		return mapQuote;
 	}

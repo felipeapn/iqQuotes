@@ -13,7 +13,6 @@ import com.felipeapn.model.Candle;
 import com.felipeapn.model.CandleDirectionEnum;
 import com.felipeapn.model.Quote;
 import com.felipeapn.repository.CandleRepository;
-import com.felipeapn.repository.QuoteRepository;
 import com.felipeapn.service.CandleService;
 import com.felipeapn.service.IqQuotesService;
 
@@ -32,12 +31,13 @@ public class CandleServiceImpl implements CandleService {
 	@Override
 	public void getCandle(LocalDateTime from, LocalDateTime to, int candleMinuteSize, int currencyId) {
 	
-		log.info("getCandle - Date and time from {} to {}", from, to);
+		log.info("getCandle - Date and time from {} to {} and currencyID -> {}", from, to, currencyId);
 		
 		LocalDateTime count = from;
 		
-		Map<Timestamp, Quote> mapQuote = quoteService.getMapQuote(from, to, 1);
+		Map<Timestamp, Quote> mapQuote = quoteService.getMapQuote(from, to.plusMinutes(1), currencyId);
 		
+		log.info("Map of quotes {} ", mapQuote);
 		Candle candle = new Candle();
 		
 		while (count.isBefore(to)) {
@@ -68,6 +68,7 @@ public class CandleServiceImpl implements CandleService {
 	@Override
 	public Map<Timestamp, Candle> getMapCandle(LocalDateTime from, LocalDateTime to, int currencyId) {
 		
+		log.info("CandleService getMapCandle from {}, to {} currencyId -> {}", from, to, currencyId);
 		Map<Timestamp, Candle> mapCandle = candleRepository.findWithTimeBetweenAndCurrencyIdToMap(
 				Timestamp.valueOf(from), Timestamp.valueOf(to), currencyId);
 		

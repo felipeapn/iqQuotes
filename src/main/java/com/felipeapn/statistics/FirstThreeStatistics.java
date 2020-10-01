@@ -36,9 +36,6 @@ public class FirstThreeStatistics implements StatisticsCalculatorStrategy {
 			statisticsDto.setStatisticsType(StatisticsTypeEnum.FIRST_THREE);
 			statisticsDto.setTime(Timestamp.valueOf(iteratorDate));
 			
-			log.info("Iterator minute {}", Timestamp.valueOf(iteratorDate));
-			log.info("values of first candle {}", mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
-			
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(5))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(4))));
 			pastDirectionCount += directionToSum(mapCandle.get(Timestamp.valueOf(iteratorDate.minusMinutes(3))));
